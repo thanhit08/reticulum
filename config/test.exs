@@ -37,7 +37,7 @@ config :ret, Ret.Guardian,
   secret_key: "47iqPEdWcfE7xRnyaxKDLt9OGEtkQG3SycHBEMOuT2qARmoESnhc76IgCUjaQIwX"
 
 config :ret, Ret.Storage,
-  host: "https://localhost:4000",
+  host: "https://157.230.41.69:4000",
   storage_path: "storage/test",
   ttl: 60 * 60 * 24
 

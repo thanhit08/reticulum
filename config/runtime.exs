@@ -7,10 +7,10 @@ case config_env() do
   :dev ->
     db_hostname = System.get_env("DB_HOST", "localhost")
     dialog_hostname = System.get_env("DIALOG_HOSTNAME", "dev-janus.reticulum.io")
-    hubs_admin_internal_hostname = System.get_env("HUBS_ADMIN_INTERNAL_HOSTNAME", "localhost")
-    hubs_client_internal_hostname = System.get_env("HUBS_CLIENT_INTERNAL_HOSTNAME", "localhost")
-    spoke_internal_hostname = System.get_env("SPOKE_INTERNAL_HOSTNAME", "localhost")
-    dev_janus_host = "localhost"
+    hubs_admin_internal_hostname = System.get_env("HUBS_ADMIN_INTERNAL_HOSTNAME", "157.230.41.69")
+    hubs_client_internal_hostname = System.get_env("HUBS_CLIENT_INTERNAL_HOSTNAME", "157.230.41.69")
+    spoke_internal_hostname = System.get_env("SPOKE_INTERNAL_HOSTNAME", "157.230.41.69")
+    dev_janus_host = "157.230.41.69"
 
     dialog_port =
       "DIALOG_PORT"

@@ -2,7 +2,7 @@ import Config
 
 # NOTE: this file contains some security keys/certs that are *not* secrets, and are only used for local development purposes.
 
-host = "localhost"
+host = "157.230.41.69"
 cors_proxy_host = "hubs-proxy.local"
 assets_host = "hubs-assets.local"
 link_host = "hubs-link.local"
@@ -144,14 +144,14 @@ config :ret, Ret.Storage,
   ttl: 60 * 60 * 24
 
 asset_hosts =
-  "https://localhost:4000 https://localhost:8080 " <>
+  "https://157.230.41.69:4000 https://157.230.41.69:8080 " <>
     "https://#{host}:4000 https://#{host}:8080 https://#{host}:3000 https://#{host}:8989 https://#{host}:9090 https://#{cors_proxy_host}:4000 " <>
     "https://assets-prod.reticulum.io https://asset-bundles-dev.reticulum.io https://asset-bundles-prod.reticulum.io"
 
 websocket_hosts =
-  "https://localhost:4000 https://localhost:8080 wss://localhost:4000 " <>
+  "https://157.230.41.69:4000 https://157.230.41.69:8080 wss://157.230.41.69:4000 " <>
     "https://#{host}:4000 https://#{host}:8080 wss://#{host}:4000 wss://#{host}:8080 wss://#{host}:8989 wss://#{host}:9090 " <>
-    "wss://#{host}:4000 wss://#{host}:8080 https://#{host}:8080 https://localhost:8080 wss://localhost:8080"
+    "wss://#{host}:4000 wss://#{host}:8080 https://#{host}:8080 https://157.230.41.69:8080 wss://157.230.41.69:8080"
 
 config :ret, RetWeb.Plugs.AddCSP,
   script_src: asset_hosts,
