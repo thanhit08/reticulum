@@ -7,9 +7,10 @@ case config_env() do
   :dev ->
     db_hostname = System.get_env("DB_HOST", "localhost")
     dialog_hostname = System.get_env("DIALOG_HOSTNAME", "dev-janus.reticulum.io")
-    hubs_admin_internal_hostname = System.get_env("HUBS_ADMIN_INTERNAL_HOSTNAME", "hubs.local")
-    hubs_client_internal_hostname = System.get_env("HUBS_CLIENT_INTERNAL_HOSTNAME", "hubs.local")
-    spoke_internal_hostname = System.get_env("SPOKE_INTERNAL_HOSTNAME", "hubs.local")
+    hubs_admin_internal_hostname = System.get_env("HUBS_ADMIN_INTERNAL_HOSTNAME", "localhost")
+    hubs_client_internal_hostname = System.get_env("HUBS_CLIENT_INTERNAL_HOSTNAME", "localhost")
+    spoke_internal_hostname = System.get_env("SPOKE_INTERNAL_HOSTNAME", "localhost")
+    dev_janus_host = "localhost"
 
     dialog_port =
       "DIALOG_PORT"
@@ -21,7 +22,8 @@ case config_env() do
       |> System.get_env("")
       |> String.replace("\\n", "\n")
 
-    config :ret, Ret.JanusLoadStatus, default_janus_host: dialog_hostname, janus_port: dialog_port
+    # config :ret, Ret.JanusLoadStatus, default_janus_host: dialog_hostname, janus_port: dialog_port
+    config :ret, Ret.JanusLoadStatus, default_janus_host: dev_janus_host, janus_port: 4443
 
     config :ret, Ret.Locking,
       session_lock_db: [
@@ -31,7 +33,7 @@ case config_env() do
         username: "postgres"
       ]
 
-    config :ret, Ret.PermsToken, perms_key: perms_key
+    config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY-----\nMIICXAIBAAKBgQDIdGIg86EGEvaofD8qyNio/YKEg7o8ZR6aXXIjwAr6HafxTMp/\nruSBICuy/ERj8Yb47Ue5RWCg/bkMoF+ykkOTMg3YdKU5fRi05hl+nmf95gA0OlUu\nFSTEXfdG0I2kaCKUaVhatg3AaPKhbUFKfPx9NKCgNdCGP5NFOeB2aS+0dwIDAQAB\nAoGAJuyimW91ly5bg0ANLAuwNrBzhbPmmA+yr5rxrQt/li3oDK0yrTSS3pgWpDzk\nMtwVr4Sz5sAYEWrzYgZKTuyj/js4TiGB5rXjuQ9mHFu1zstGCOeTdEqrMOO8hbCk\ngb1T/bfmZRm1PuF84VSk5MKeKzQILJSD0XVbcqO7aEZhNnECQQDpOOH6shhsHlAM\nuc0wRscxaRMahLK0T14v1w84MqfCTego/IT2zZBSsLjtq5geOpXPJMtCHi0b3mB1\n4niqYDkFAkEA3Ag7cFVfbllne13tgEVz/4bpfYySbdbQ8FclbUMpWXmGZQxvmC2M\nXaKHye4ZiU4JoVzCjUGoQNtlcih6BzMASwJAIjD8sEw72F35TmRO+Kzntw64hkK+\nEEEyhcD5sjt67LmPN7MNq0Enz3epJO7rNkNQgzXZtq/F3TgU3DN/jTreIQJAfovN\ng6HWLOUGexFeUvOe70tsZmS+oqV1rYSxZdHGqksWXG92jxNDM2cSqbRiw3E6YK+0\nxQEJ/6MvCST2acWPWQJBAKPkA9Swz98tzewuMAL2NHCUhFm/kB8mflwI11BwG8pl\nXjoXYC74zUEZLyaZ8LzOESaqtdsb/dEEmSRVcZ0wVt4=\n-----END RSA PRIVATE KEY-----"
 
     config :ret, Ret.PageOriginWarmer,
       admin_page_origin: "https://#{hubs_admin_internal_hostname}:8989",
