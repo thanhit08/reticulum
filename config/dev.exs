@@ -163,8 +163,10 @@ config :ret, RetWeb.Plugs.AddCSP,
   media_src: asset_hosts,
   manifest_src: asset_hosts
 
-config :ret, Ret.Mailer, adapter: Bamboo.LocalAdapter
+# config :ret, Ret.Mailer, adapter: Bamboo.LocalAdapter
+config :ret, Ret.Mailer, adapter: Bamboo.SMTPAdapter, server: "smtp.gmail.com", port: 587, username: "thanhit.tran@gmail.com", password: "oiic yyjm obei zfto", ssl: :false, tls: :if_available, retries: 1
 
+# oiic yyjm obei zfto
 config :ret, RetWeb.Email, from: "info@hubs-mail.com"
 
 config :ret, Ret.OAuthToken, oauth_token_key: ""
