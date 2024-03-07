@@ -104,6 +104,9 @@ defmodule Ret.Hub do
     field :user_data, :map
     field :allow_promotion, :boolean
     field :room_size, :integer
+    field :password, :string
+
+
 
     belongs_to :created_by_account, Ret.Account, references: :account_id
 
@@ -177,6 +180,7 @@ defmodule Ret.Hub do
           less_than_or_equal_to: AppConfig.get_cached_config_value("features|max_room_size")
         )
         |> unique_constraint(:hub_sid)
+        |> validate_length(:password, max: 4000)
         |> Repo.insert()
 
       case result do
@@ -416,7 +420,7 @@ defmodule Ret.Hub do
 
   def add_attrs_to_changeset(changeset, attrs) do
     changeset
-    |> cast(attrs, [:name, :description, :user_data, :room_size])
+    |> cast(attrs, [:name, :description, :user_data, :room_size, :password])
     |> validate_required([:name])
     |> validate_length(:name, max: 64)
     |> validate_length(:description, max: 64_000)
@@ -425,6 +429,7 @@ defmodule Ret.Hub do
       less_than_or_equal_to: AppConfig.get_cached_config_value("features|max_room_size")
     )
     |> HubSlug.maybe_generate_slug()
+    |> validate_length(:password, max: 4000)
   end
 
   def member_permissions_from_attrs(%{} = attrs) do
