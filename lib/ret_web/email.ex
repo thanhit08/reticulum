@@ -2,6 +2,18 @@ defmodule RetWeb.Email do
   use Bamboo.Phoenix, view: RetWeb.EmailView
   alias Ret.{AppConfig}
 
+  import Bamboo.Email
+
+  def send_email(email_address, subject, htmlbody, body) do
+    new_email(
+      to: email_address,
+      from: {"Tekville Metaverse", "thanhit.tran@gmail.com"},
+      subject: subject,
+      html_body: htmlbody,
+      text_body: body
+    )
+  end
+
   def auth_email(to_address, signin_args) do
     app_name = AppConfig.get_cached_config_value("translations|en|app-name")
     app_full_name = AppConfig.get_cached_config_value("translations|en|app-full-name") || app_name

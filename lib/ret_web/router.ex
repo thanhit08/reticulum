@@ -168,6 +168,10 @@ defmodule RetWeb.Router do
 
       post "/twitter/tweets", Api.V1.TwitterController, :tweets
 
+      post "/send-email", Api.V1.EmailController, :send_email
+
+
+
       resources "/projects", Api.V1.ProjectController,
         only: [:index, :show, :create, :update, :delete] do
         post "/publish", Api.V1.ProjectController, :publish
