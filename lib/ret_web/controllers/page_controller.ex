@@ -435,7 +435,7 @@ defmodule RetWeb.PageController do
     if String.contains?(user_agent, "kube-probe") do
       send_resp(conn, 200, "")
     else
-      send_resp(conn, 404, "bad Room ID")
+      send_resp(conn, 404, "Oops! It seems like the Room ID you entered is invalid.")
     end
   end
 
