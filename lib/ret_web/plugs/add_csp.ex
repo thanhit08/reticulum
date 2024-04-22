@@ -237,6 +237,7 @@ defmodule RetWeb.Plugs.AddCSP do
         "https://player.vimeo.com",
         "https://www.youtube.com",
         "https://webglmulti.web.app/",
+        "https://tekville2024.web.app/",
         custom_rules[:frame_src]
       ],
       "base-uri" => [
